@@ -1,30 +1,16 @@
-FROM python:3-alpine as builder
-
-WORKDIR /home/Bassa
-COPY . .
-
-RUN ls && pip install pylint \
-&& pylint -E .
-
-
-FROM python:3.7
+FROM python:3
 
 MAINTAINER SCoRe Lab Community <commuity@scorelab.org>
 
 ARG BUILD_DATE
 ARG VCS_REF
-
-WORKDIR /home/Bassa
-EXPOSE 5000
+WORKDIR /home/Bassa/
 COPY . .
+RUN apt-get update && apt-get install python3-pip -y && apt-get install python3-setuptools -y && python3 setup.py develop
 
+EXPOSE 5000
 
-RUN apt-get update \
-&& ./setup.sh \
-# && python3 setup.py test \ disabing temporary
-&& python3 setup.py develop
-
-CMD [ "./run.sh"]
+CMD [ "python3", "Main.py" ]
 
 
 LABEL multi.org.label-schema.name="Bassa" \

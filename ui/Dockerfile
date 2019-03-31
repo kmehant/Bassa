@@ -1,26 +1,26 @@
-FROM node:9 as builder
-
-WORKDIR /home/Bassa
-
-RUN ls \
-&& npm install -g bower \
-&& npm install -g gulp \
-&& npm link gulp
-
-COPY . .
-
-RUN yarn install \
-&&  gulp
-
-FROM nginx:alpine
+FROM ubuntu
 
 MAINTAINER SCoRe Lab Community <commuity@scorelab.org>
 
 ARG BUILD_DATE
 ARG VCS_REF
+WORKDIR /home/Bassa/ui
+COPY . .
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /home/Bassa/dist /var/www/bassa
+EXPOSE 3000
+
+RUN apt-get update
+RUN apt-get install curl -y
+RUN apt install nodejs npm -y
+RUN npm install bower
+RUN npm install gulp
+RUN npm install -g gulp
+RUN npm install --global gulp-cli
+RUN npm install yarn -g
+RUN apt-get install yarn -y
+RUN apt remove cmdtest -y
+RUN yarn install
+CMD [ "gulp", "serve" ]
 
 LABEL multi.org.label-schema.name="Bassa" \
       multi.org.label-schema.description="Bassa provides Automated Download Queue to make the best use of Internet bandwidth" \
