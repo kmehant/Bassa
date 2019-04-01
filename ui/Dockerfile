@@ -10,7 +10,8 @@ COPY . .
 EXPOSE 3000
 
 RUN apt-get update
-RUN apt-get install curl -y
+RUN apt-get clean
+RUN apt-get install git curl -y
 RUN apt install nodejs npm -y
 RUN npm install bower
 RUN npm install gulp

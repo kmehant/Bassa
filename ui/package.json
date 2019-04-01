@@ -112,7 +112,7 @@
   },
   "scripts": {
     "init": "npm install",
-    "install": "bower --allow-root install",
+    "install": "bower --allow-root --force install",
     "test": "./node_modules/.bin/karma start --single-run --browsers Chrome"
   }
 }
