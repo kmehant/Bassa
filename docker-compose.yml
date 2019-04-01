@@ -7,10 +7,11 @@ services:
       - 5000:5000
     links:
       - db
-   # environment:
-    #  BASSA_DB_NAME: Bassa
-     # BASSA_DB_USERNAME: root
-      #BASSA_DB_PASSWORD: root
+      - aria2c
+    environment:
+      BASSA_DB_NAME: Bassa
+      BASSA_DB_USERNAME: bassa
+      BASSA_DB_PASSWORD: bassa@1234
     labels:
       com.example.description: "Docker container for Bassa UI"
 
@@ -28,25 +29,25 @@ services:
     build: components/core/aria2c/
     container_name: aria2c
     links:
-      - api
+      - db
     ports:
       - 6800:6800
     restart: always
 
   db:
-    image: mysql
+    image: mariadb
     restart: always
     volumes:
       - data-volume:/var/lib/mysql
-      - ./.docker/volumes/mysql:/docker-entrypoint-initdb.d
-      - ./db_schema/:/tmp/schema
+    #  - ./.docker/volumes/mysql:/docker-entrypoint-initdb.d
+    #  - ./db_schema/:/tmp/schema
     ports:
       - 3306:3306
- #   environment:
-  #    MYSQL_ROOT_PASSWORD: root
-   #   MYSQL_DATABASE: Bassa
-    #  MYSQL_USER: root
-     # MYSQL_PASSWORD: root
+    environment:
+      MYSQL_ROOT_PASSWORD: bassa@1234
+      MYSQL_DATABASE: Bassa
+      MYSQL_USER: bassa
+      MYSQL_PASSWORD: bassa@1234
 
 volumes:
   data-volume:
