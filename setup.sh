@@ -10,39 +10,39 @@ BREW=$(which brew)
 PACKAGE_MANAGER="package_manager"
 
 if ! [ $(id -u) = 0 ]; then
-   printf "Please run as root to proceed with installations... \n1. Type in: su\n2. Enter your password\n3. Execute: sh setup.sh\n"
+	printf "Please run as root to proceed with installations... \n1. Type in: su\n2. Enter your password\n3. Execute: sh setup.sh\n"
 
 else
-   echo "Starting dependency installation..."
-   echo "Finding the package manager"
+	echo "Starting dependency installation..."
+	echo "Finding the package manager"
 
-   if [ ! -z $APT_GET ]; then
-      echo -e "apt-get found\n"
-      PACKAGE_MANAGER="apt-get"
-      ./package-list-aptget
+	if [ ! -z $APT_GET ]; then
+		echo -e "apt-get found\n"
+		PACKAGE_MANAGER="apt-get"
+		./package-list-aptget
 
-   elif [ ! -z $PACMAN ]; then
-      echo -e "pacman found\n"
-      PACKAGE_MANAGER="pacman"
-      ./package-list-pacman
+	elif [ ! -z $PACMAN ]; then
+		echo -e "pacman found\n"
+		PACKAGE_MANAGER="pacman"
+		./package-list-pacman
 
-   elif [ ! -z $DNF ]; then
-      echo -e "dnf found\n"
-      PACKAGE_MANAGER="dnf"
-      ./package-list-dnf
+	elif [ ! -z $DNF ]; then
+		echo -e "dnf found\n"
+		PACKAGE_MANAGER="dnf"
+		./package-list-dnf
 
-   elif [ ! -z $YUM ]; then
-      echo -e "yum found\n"
-      PACKAGE_MANAGER="yum"
-      ./package-list-yum
+	elif [ ! -z $YUM ]; then
+		echo -e "yum found\n"
+		PACKAGE_MANAGER="yum"
+		./package-list-yum
 
-   elif [ ! -z $BREW ]; then
-      echo -e "brew found\n"
-      PACKAGE_MANAGER="brew"
-      ./package-list-brew
+	elif [ ! -z $BREW ]; then
+		echo -e "brew found\n"
+		PACKAGE_MANAGER="brew"
+		./package-list-brew
 
-   else
-      echo "Please manually install packages in package-list-$PACKAGE_MANAGER file"
-      exit 1
-   fi
+	else
+		echo "Please manually install packages in package-list-$PACKAGE_MANAGER file"
+		exit 1
+	fi
 fi
