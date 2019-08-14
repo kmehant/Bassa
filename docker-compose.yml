@@ -43,9 +43,9 @@ services:
     image: mysql:5.7
     restart: always
     volumes:
-      - data-volume:/var/lib/mysql 
+      - data-volume:/var/lib/mysql
       - ./.docker/volumes/mysql:/docker-entrypoint-initdb.d
-      - ./db_schema/:/tmp/schema/ 
+      - ./db_schema/:/tmp/schema/
     ports:
       - 3306:3306
     environment:
@@ -56,4 +56,4 @@ services:
       BASSA_DB_NAME: Bassa
 
 volumes:
-  data-volume:
+  ? data-volume

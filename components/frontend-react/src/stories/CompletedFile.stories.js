@@ -1,17 +1,21 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { object } from '@storybook/addon-knobs';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import { object } from "@storybook/addon-knobs";
 
-import CompletedFile from '../components/CompletedFile';
+import CompletedFile from "../components/CompletedFile";
 
 export const fileObject = {
-	id: '1',
-	user: 'some_user_name',
-	name: 'some_file_name',
-	size: '120.23 KB',
-	time: 'some_hours_ago'
-}
+  id: "1",
+  user: "some_user_name",
+  name: "some_file_name",
+  size: "120.23 KB",
+  time: "some_hours_ago"
+};
 
-storiesOf('CompletedFile', module)
-.add('default', () => <CompletedFile file={object('file', {...fileObject})} onDownload={action('download')}/>)
+storiesOf("CompletedFile", module).add("default", () => (
+  <CompletedFile
+    file={object("file", { ...fileObject })}
+    onDownload={action("download")}
+  />
+));

@@ -1,24 +1,22 @@
-import React from 'react';
-import {
-  PieChart, Pie, Cell,
-} from 'recharts';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { PieChart, Pie, Cell } from "recharts";
+import { makeStyles } from "@material-ui/core/styles";
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const useStyles = makeStyles(theme => ({
   container: {
-    display:'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxHeight: '100vh',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    maxHeight: "100vh"
   },
   chart: {
-    paddingLeft: 30,
+    paddingLeft: 30
   }
-}))
+}));
 
-const UsageStats = (props) => {
+const UsageStats = props => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -33,13 +31,13 @@ const UsageStats = (props) => {
           paddingAngle={5}
           dataKey="value"
         >
-          {
-            props.data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-          }
+          {props.data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
         </Pie>
       </PieChart>
     </div>
   );
-}
+};
 
 export default UsageStats;

@@ -1,7 +1,6 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
+import React from "react";
+import { storiesOf } from "@storybook/react";
 
-import LoginComponent from '../containers/LoginComponent';
+import LoginComponent from "../containers/LoginComponent";
 
-storiesOf('Login Component', module)
-.add('default', () => <LoginComponent/>)
+storiesOf("Login Component", module).add("default", () => <LoginComponent />);
